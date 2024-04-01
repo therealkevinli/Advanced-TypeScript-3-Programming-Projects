@@ -1,3 +1,5 @@
+// Array functions and examples: https://blog.canopas.com/typescript-array-methods-and-their-usages-daa8d498b4fd
+
 // in this code we use array.shift() to deque an element. There is also .pop for popping the last element
 // [1,2,3].pop() pops 3. [1,2,3].shift() dequeues 1
 
@@ -66,5 +68,7 @@ function KeyValuePair<TKey, TValue>(key:TKey, value:TValue){
     console.log(typeof(key));
 }
 
+//type defined initialization of KeyValuePair is optional but will be enforced
 KeyValuePair<string,number>("first pair",123);
 KeyValuePair("second pair",123);
+
