@@ -1,3 +1,6 @@
+// in this code we use array.shift() to deque an element. There is also .pop for popping the last element
+// [1,2,3].pop() pops 3. [1,2,3].shift() dequeues 1
+
 class QueueOfInt {
     private queue : number[]= [];
 
@@ -51,3 +54,17 @@ stringQueue.Push(`Hello`);
 stringQueue.Push(`Generics`);
 console.log(stringQueue.Pop());
 console.log(stringQueue.Pop());
+
+console.log(`trying with a literal ${[1,2,3].pop()}`);
+let firstNumArray = [1,2,3];
+console.log(firstNumArray.pop()) //print pop 3
+console.log(firstNumArray.shift()) //print dequeue 1
+
+
+//p 36
+function KeyValuePair<TKey, TValue>(key:TKey, value:TValue){
+    console.log(typeof(key));
+}
+
+KeyValuePair<string,number>("first pair",123);
+KeyValuePair("second pair",123);
