@@ -23,6 +23,15 @@ class MusicCollection {
     public Get(genre : Genre) : string[] | undefined {
         return this.collection.get(genre);
     }
+
+    // Create a new array and return a combined 
+    // public AddArtist(genre: Genre, artist: string): void {
+    //     if (!this.collection.get(genre).has(artist))
+    //     {
+
+    //     }
+
+    // }
 }
 
 let collection = new MusicCollection();

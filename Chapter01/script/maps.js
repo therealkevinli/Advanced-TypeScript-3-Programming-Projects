@@ -7,6 +7,8 @@ var Genre;
     Genre[Genre["Pop"] = 3] = "Pop";
     Genre[Genre["HeavyMetal"] = 4] = "HeavyMetal";
 })(Genre || (Genre = {}));
+//Maps have set, get, has, delete, size, and clear attributes
+//https://www.javatpoint.com/typescript-map
 class MusicCollection {
     constructor() {
         this.collection = new Map(); //readonly allows it only to be initialized in constructor
@@ -27,5 +29,5 @@ collection.Add(Genre.HeavyMetal, [`Tyger tiger`, `Anglo Saxon`, `Doro the explor
 collection.Add(Genre.Pop, [`Michael Jackson`, `Abba`, `The Spice Girls`]);
 collection.Add(Genre.Rock, [`Deep Purple`, `Led Zeppelin`, `The Dixie Dregs`]);
 console.log(collection.Get(Genre.HeavyMetal));
-console.log(collection.Get(0)); //this will print classical artists because it is the first [0th] genre in enum
+console.log(collection.Get(0)); //this will print rock artists because it is the first [0th] genre in enum
 //# sourceMappingURL=maps.js.map
