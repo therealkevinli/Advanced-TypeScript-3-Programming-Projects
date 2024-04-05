@@ -29,8 +29,11 @@ class MyWebService {
     CallExpensiveWebOperation() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                ExpensiveWebCall(10000).then(() => console.log(`After then in try block callexpensiveweboperation2`));
+                ExpensiveWebCall(10).then(() => console.log("at then in ExpensiveWebCall2 should print after In try block web 2"));
                 console.log(`In try block web service2`);
+                // await makes it clear that this is a promise and force return to be async, and makes them wait
+                yield ExpensiveWebCall(10000).then(() => console.log(`After then in try block callexpensiveweboperation2`));
+                console.log("everything after await waits for the await to finish, otherwise it would keep going");
             }
             catch (error) {
                 console.log(`Caught ${error}`);
@@ -39,13 +42,13 @@ class MyWebService {
     }
 }
 console.log(`calling service1`);
-new MyWebService1().CallExpensiveWebOperation();
-console.log(`Processing continues until the web service returns`);
-console.log(`calling service`);
-new MyWebService().CallExpensiveWebOperation();
-console.log(`Processing continues until the web service returns`);
+let nws1 = new MyWebService1().CallExpensiveWebOperation();
+console.log(`Processing continues until the web service1 returns`);
+console.log(`calling service2`);
+let nws2 = new MyWebService().CallExpensiveWebOperation();
+console.log(`Processing continues until the web service2 returns`);
 // other examples to get used to arrow functions (annonymous functions)
-var a = 2, b = 3;
+let a = 2, b = 3;
 let calculate = () => {
     return a + b;
 };
@@ -58,7 +61,12 @@ function getLength(x) {
     return x.length;
 }
 // arrow function version, does not need getLength function to be already defined because it is using an annonymous function
-console.log(result.map(x => x.length));
-console.log(result.map(getLength));
-console.log(result.map(() => result.length));
+console.log(result.map(x => x.length)); //[6,5] Scalar and Yash are lengths 6 and 5
+console.log(result.map(getLength)); //[6,5]
+console.log(result.map(() => result.length)); // [2,2] // for all elements in result because there is no parameter, use result.length
+console.log("nws1 is void");
+nws1;
+console.log("nws2 object can tell us if it is successful");
+nws2.then(() => console.log("finished then nws2"));
+console.log("written after nws2.then but it should be printed before nws2 finished");
 //# sourceMappingURL=promises.js.map
