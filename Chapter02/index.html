@@ -21,8 +21,11 @@
     -->
     <div class="container-fluid h-100">
       <div class="row h-100">
+        <!-- col-lg-6: if the pixel width is larger than 1200, split it down the middle -->
+        <!-- <div class="col-lg-6 h-100">  adding h-100 makes the text box resize dynamically to fill 100% of the height-->
         <div class="col-lg-6">
           <textarea class="form-control h-100" id="markdown"></textarea>
+          <!-- If no h-100, large setting would only have small default height for text box instead of filling the whole column height <textarea class="form-control h-100" id="markdown"></textarea> -->
         </div>
         <div class="col-lg-6 h-100">
           <label class="h-100" id="markdown-output"></label>
