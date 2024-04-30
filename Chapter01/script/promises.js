@@ -14,6 +14,7 @@ function ExpensiveWebCall1(time) {
 }
 class MyWebService1 {
     // Does not return anything but uses ExpensiveWebCall1 which is a promise
+    // If you put async in front it returns Promise<void> async CallExpensiveWebOperation() : Promise<void> {
     CallExpensiveWebOperation() {
         //then gets run after success, like else in python try except else finally
         ExpensiveWebCall1(8000).then(() => console.log(`Finished web service1`))
@@ -25,11 +26,12 @@ function ExpensiveWebCall(time) {
     return new Promise((resolve, reject) => setTimeout(resolve, time));
 }
 class MyWebService {
-    // what promise does this return?
+    // what promise does this return? - Promise without a type
+    // async is needed because there is await in here, so when CallExpensiveWebOperation() is 
     CallExpensiveWebOperation() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                ExpensiveWebCall(10).then(() => console.log("at then in ExpensiveWebCall2 should print after In try block web 2"));
+                yield ExpensiveWebCall(10).then(() => console.log("at then in ExpensiveWebCall2 should print after In try block web 2"));
                 console.log(`In try block web service2`);
                 // await makes it clear that this is a promise and force return to be async, and makes them wait
                 yield ExpensiveWebCall(10000).then(() => console.log(`After then in try block callexpensiveweboperation2`));
@@ -53,6 +55,10 @@ let calculate = () => {
     return a + b;
 };
 console.log(calculate());
+let calculate2 = (first, second) => {
+    return first + second;
+};
+console.log(calculate2(a, b));
 const result = [
     'Scaler',
     'Yash'
@@ -62,10 +68,11 @@ function getLength(x) {
 }
 // arrow function version, does not need getLength function to be already defined because it is using an annonymous function
 console.log(result.map(x => x.length)); //[6,5] Scalar and Yash are lengths 6 and 5
-console.log(result.map(getLength)); //[6,5]
+console.log(result.map(x => getLength(x))); //[6,5] 
+console.log(result.map(getLength)); //[6,5] the same as the above example (x) => getLength(x)
 console.log(result.map(() => result.length)); // [2,2] // for all elements in result because there is no parameter, use result.length
 console.log("nws1 is void");
-nws1;
+// nws1.then(()=>console.log("this has an error because there is no async so no promise is returned"));
 console.log("nws2 object can tell us if it is successful");
 nws2.then(() => console.log("finished then nws2"));
 console.log("written after nws2.then but it should be printed before nws2 finished");
