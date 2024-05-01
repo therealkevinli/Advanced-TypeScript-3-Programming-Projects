@@ -31,8 +31,8 @@ class MyWebService {
     CallExpensiveWebOperation() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield ExpensiveWebCall(10).then(() => console.log("at then in ExpensiveWebCall2 should print after In try block web 2"));
-                console.log(`In try block web service2`);
+                ExpensiveWebCall(10).then(() => console.log("at then in ExpensiveWebCall2 should print after In try block web 2"));
+                console.log(`In try block web service2, if the above line had await, this would print after that line finished`);
                 // await makes it clear that this is a promise and force return to be async, and makes them wait
                 yield ExpensiveWebCall(10000).then(() => console.log(`After then in try block callexpensiveweboperation2`));
                 console.log("everything after await waits for the await to finish, otherwise it would keep going");
