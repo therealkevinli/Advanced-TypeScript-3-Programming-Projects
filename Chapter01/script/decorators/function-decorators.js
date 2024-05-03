@@ -29,6 +29,7 @@ function Role(role) {
     return function (target, propertyKey, descriptor) {
         let originalMethod = descriptor.value;
         descriptor.value = function () {
+            console.log("printed everytime Role decorator is used in a function call");
             if (IsInRole(role)) {
                 originalMethod.apply(this, arguments);
             }
@@ -100,6 +101,8 @@ class DecoratedExampleMethodDecoration {
 }
 __decorate([
     Role("user") // Note, no semi-colon
+    ,
+    Logging("User logging anyonecanrun")
 ], DecoratedExampleMethodDecoration.prototype, "AnyoneCanRun", null);
 __decorate([
     Role("admin")
