@@ -25,6 +25,7 @@ function Role(role : string) {
     return function(target: any, propertyKey : string | symbol, descriptor : PropertyDescriptor) {
         let originalMethod = descriptor.value;
         descriptor.value = function() {
+            console.log("printed everytime Role decorator is used in a function call")
             if (IsInRole(role)) {
                 originalMethod.apply(this, arguments);
             } else {
@@ -86,6 +87,7 @@ class RoleCheck implements IDecoratorExample {
 
 class DecoratedExampleMethodDecoration implements IDecoratorExample {
     @Role("user") // Note, no semi-colon
+    @Logging("User logging anyonecanrun")
     AnyoneCanRun(args:string) : void {
         console.log("AnyoneCanRun @Role'user' addition")
         console.log(args);
